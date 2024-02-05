@@ -1,0 +1,83 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.main__login {
+    position: relative;
+    background-color: #f6f6f6;
+    width: 100%;
+    height: 100vh;
+    /* Usa la altura completa del viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor de inicio de sesión */
+.contenedor__login {
+    width: 420px;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    padding: 30px 20px;
+    background: #fff;
+    margin: auto;
+}
+.titulo_login{
+    border-bottom: 1px solid #c8c8c8;
+    margin-bottom: 1.3rem;
+}
+.titulo_login a {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom:15px;
+}
+
+.titulo_login span {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.texto__login label {
+    font-size: .9rem;
+    color: #8d9092;
+    display: block;
+    margin-top: 10px;
+}
+
+.texto__login input {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+    font-weight: 400;
+    appearance: none;
+    padding: 8px 10px;
+    width: 100%;
+}
+
+.texto__login a {
+    font-size: 0.8rem;
+    float: right;
+    color: #004c86;
+    text-decoration: none !important;
+}
+.button__login{
+    margin-top: 30px;
+    display: block;
+    text-align: center;
+}
+.button__login input{
+    border: 1px solid #40ACFF;
+    margin-top: 15px;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #40ACFF;
+    color: white;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
