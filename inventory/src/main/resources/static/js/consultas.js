@@ -1,3 +1,21 @@
+var documento_usuario_register = document.getElementById("documento_usuario_register");
+var documento_label_register = document.getElementById("documento_label_register");
+documento_usuario_register.addEventListener('input', function() {
+    var valor = documento_usuario_register.value;
+    if (valor.length < 15) {
+              // Aquí podrías agregar más lógica, como deshabilitar el botón de envío o cambiar el estilo del campo
+              documento_usuario_register.classList.remove("errorInput");
+              documento_label_register.innerText = ' ';
+    }else{
+         // Si la longitud del valor ingresado es mayor a 15, muestra un mensaje de error
+         console.error("Error: El documento no puede tener más de 15 caracteres.");
+         documento_usuario_register.classList.add("errorInput");
+         documento_label_register.innerText = '!error de documento!';
+
+    }
+});
+
+
 /**
  ELIMINAR ITEM
  */

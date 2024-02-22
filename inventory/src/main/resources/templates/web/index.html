@@ -1,54 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
     <!-- import css -->
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/alertas.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/alertas.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootstrap/bootstrap-icons/bootstrap-icons.css">
 
 </head>
+
 <body>
-<div class="main__login">
-    <div class="contenedor__login">
-        <form action="/autenticacion/login" method="post" class="login">
-            <div class="titulo_login">
-                <a>ProyectoWeb</a>
-                <p> <span>Bienvenido de nuevo,</span>
-                    <span>Inicie sesión en su cuenta de administrador.</span></p>
-               
-            </div>
-            <div class="texto__login">
-                <label for="">userName</label>
-                <input type="text" name="numero_documento">
-            </div>
-            <div class="texto__login">
-                <label for="">password</label>               
-                <input type="password" name="password_usuario">
-                <a href="/autenticacion/recoverPassword">recuperar password</a>
-            </div>
-            <div class="button__login">
-                <input type="submit" value="iniciar sesion">
-            </div>
-        </form>
+    <div class="main__login">
+        <div class="contenedor__login">
+            <form action="/autenticacion/login" method="post" class="login">
+                <div class="titulo_login">
+                    <a>ProyectoWeb</a>
+                    <p> <span>Bienvenido de nuevo,</span>
+                        <span>Inicie sesión en su cuenta de administrador.</span>
+                    </p>
+
+                </div>
+                <div class="texto__login">
+                    <label for="">userName</label>
+                    <input type="text" name="numero_documento">
+                </div>
+                <div class="texto__login">
+                    <label for="">password</label>
+                    <input type="password" name="password_usuario">
+                    <a href="/autenticacion/recoverPassword">recuperar password</a>
+                </div>
+                <div class="button__login">
+                    <input type="submit" value="iniciar sesion">
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 
 
-<!-- MENSAJES ALERTAS -->
-<div th:if="${mensajeError != null}" class="alerta">
-    <div class="contenedor_alerta_error alert-danger ">
-        <a><i class="bi bi-x-octagon"></i></a>
-        <p th:text="${mensajeError}"></p>
+    <!-- MENSAJES ALERTAS -->
+    <div th:if="${mensajeError != null}" class="alerta">
+        <div class="contenedor_alerta_error alert-danger ">
+            <a><i class="bi bi-x-octagon"></i></a>
+            <p th:text="${mensajeError}"></p>
+        </div>
     </div>
-</div>
 
-        <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script>
+        // Function to close the error alert after 3 seconds
+        setTimeout(function () {
+            cerrarErrorAlert();
+        }, 4500);
+
+        // Function to close the error alert
+        function cerrarErrorAlert() {
+            var errorAlerts = document.querySelectorAll('.alerta');
+            for (let error of errorAlerts) {
+                if (error) {
+                    error.style.display = 'none';
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="~{/fragmentos/administrador/head :: head}"></head>
+
+<body>
+    <div class="cuerpo_pagina" th:if="${session.CodigoUsuario != null}">
+        <!-- menu header -->
+        <div th:replace="~{/fragmentos/administrador/barra-top :: div}"></div>
+        <!-- finish menu header TOP-->
+        <div class="contenedor_body">
+            <!-- menu lateral -->
+            <div th:replace="~{/fragmentos/administrador/barra-lateral :: div}"></div>
+            <!-- finish menu lateral -->
+            <div class="contenedor_main">
+                <main class="main">
+                    <div class="titulo_seccion_dashboard">
+                        <a href="#">Usuario</a>
+                        <p>administrador/usuario</p>
+                    </div>
+                    <!-- cards -->
+                    <div class="contenedor_cards_dashboard">
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- finis cards -->
+                    <!-- formulario editar -->
+                    <div class="formulario_editar">
+                        <form action="/administrador/usuarios/guardar" method="POST">
+                            <div class="modal-body">
+                                <div class="formulario-dashboard">
+                                    <div class="contenedor_formulario_dashboard">
+                                        <div class="formulario_input">
+                                            <label class="d-block">Tipo documento</label>
+                                            <select id="" name="id_documento">                                                
+                                                    <option th:each="documentos : ${listaDocumentos}"
+                                                        th:value="${documentos.id_documento}" th:text="${documentos.nombre_documento}"
+                                                        th:selected="${usuarioBuscado.id_documento == documentos.id_documento}">
+                                                    </option>
+                                            </select>
+                                        </div>
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Numero Documento  <span style="font-size: 12px;color:red" id="documento_label_register">!error de documento!</span></label>
+                                            <input type="text" name="documento_usuario"
+                                                th:value="${usuarioBuscado.documento_usuario}" id="documento_usuario_register">
+                                        </div>
+                                    </div>
+                                    <div class="contenedor_formulario_dashboard">
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Nombre</label>
+                                            <input type="text" name="nombre" th:value="${usuarioBuscado.nombre}">
+                                        </div>
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Apellido Paterno</label>
+                                            <input type="text" name="apellido_paterno"
+                                                th:value="${usuarioBuscado.apellido_paterno}">
+                                        </div>
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Apellido Materno</label>
+                                            <input type="text" name="apellido_materno"
+                                                th:value="${usuarioBuscado.apellido_materno}">
+                                        </div>
+                                    </div>
+                                    <div class="contenedor_formulario_dashboard">
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Tefefono</label>
+                                            <input type="text" name="telefono" th:value="${usuarioBuscado.telefono}">
+                                        </div>
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Correo</label>
+                                            <input type="text" name="correo" th:value="${usuarioBuscado.correo}">
+                                        </div>
+                                        <div class="formulario_input">
+                                            <label class="d-block" for="">Password</label>
+                                            <input type="text" name="contrasena"
+                                                th:value="${usuarioBuscado.contrasena}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="contenedor_formulario_dashboard">
+                                        <div class="formulario_input">
+                                            <label class="d-block">Rango / Rol</label>
+                                            <select name="id_rol">
+                                                <option th:each="rol : ${listaRoles}" th:value="${rol.id_rol}"
+                                                    th:text="${rol.nombre_rol}"
+                                                    th:selected="${usuarioBuscado.id_rol == rol.id_rol}">
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="formulario_input">
+                                            <label class="d-block">Estado</label>
+                                            <select name="id_estado" id="">
+                                                <option th:each="estado : ${listaEstados}"
+                                                    th:value="${estado.id_estado}" th:text="${estado.nombre_estado}"
+                                                    th:selected="${usuarioBuscado.id_estado == estado.id_estado}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="btn_editar">
+                                <input type="hidden" name="codigo_usuario" th:value="${usuarioBuscado.codigo_usuario}"> 
+                                <input type="submit" class="btn-aceptar" data-bs-dismiss="modal" value="aceptar">
+                                <a class="btn-eliminar" href="/administrador/usuarios">Regresar</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- fin formulario -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="help_bot" th:if="${session.CodigoUsuario != null}">
+        <a><img src="/img/bot.png" alt=""></a>
+    </div>
+    <!-- scrips -->
+    <script src="/js/buscador.js"></script>
+    <script src="/js/menuLateral.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap.esm.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/consultas.js"></script>
+    <script src="/js/error.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- mensaje -->
+    <div th:if="${mensajeOk != null}" class="alerta">
+        <div class="contenedor_alerta_ok alert-success ">
+            <a><i class="bi bi-check2-all"></i></a>
+            <p th:text="${mensajeOk}"></p>
+        </div>
+    </div>
+    <div th:if="${mensajeError != null}" class="alerta">
+        <div class="contenedor_alerta_error alert-danger ">
+            <a><i class="bi bi-x-octagon"></i></a>
+            <p th:text="${mensajeError}"></p>
+        </div>
+    </div>
+    <div th:unless="${session.CodigoUsuario != null}">
+        <div th:replace="~{/fragmentos/administrador/error :: div}"></div>
+    </div>
+</body>
+
+</html>

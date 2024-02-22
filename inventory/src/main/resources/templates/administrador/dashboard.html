@@ -1,11 +1,341 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="~{/fragmentos/administrador/head :: head}"></head>
+
 <body>
-    <h1>BIENVENIDO</h1>
+    <div class="cuerpo_pagina" th:if="${session.CodigoUsuario != null}">
+        <!-- menu header -->
+      <div  th:replace="~{/fragmentos/administrador/barra-top :: div}"></div>
+        <!-- finish menu header TOP-->
+        <div class="contenedor_body">
+            <!-- menu lateral -->
+           <div th:replace="~{/fragmentos/administrador/barra-lateral :: div}"></div>
+            <!-- finish menu lateral -->
+            <div class="contenedor_main">
+                <main class="main">
+                    <div class="titulo_seccion_dashboard">
+                        <a href="#">Usuario</a> 
+                        <p>administrador/usuario</p>                    
+                    </div>
+                    <!-- cards -->
+                    <div class="contenedor_cards_dashboard">
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>                       
+                    </div>  
+                    <!-- finis cards -->
+                    <!-- table -->
+                    <div class="contenedor_table">
+                        <div class="contenedor-btn-table">
+                            <div class="btn-agregar">
+                                <a  type="button" data-bs-toggle="modal" data-bs-target="#AgregarItem"><span>Nuevo Item</span><i class="bi bi-plus"></i></a>
+                            </div>
+                            <div class="btn-buscar">
+                                <div>
+                                    <input id="myInput" onkeyup="myFunction()" type="text" placeholder="Buscar...">
+                                    <button class=""><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Estado</th>
+                                    <th>accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>1</p></td>
+                                    <td>ANGEL SEBASTIAN</td>
+                                    <td>BARRIENTOS GOMEZ</td>
+                                    <td>angelsebastian545@gmai.com</td>
+                                    <td>902146242</td>
+                                    <td class="estado_usuario_table activo"><i class="bi bi-check-circle"></i></td>
+                                    <td class="btn_table">
+                                        <a  data-bs-toggle="modal" data-bs-target="#EditarItem"><i class="bi bi-floppy"></i></a>
+                                        <a  class="eliminar-item"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>AbNGEL SEBASTIAN</td>
+                                    <td>BARRIENTOS GOMEZ</td>
+                                    <td>angelsebastian545@gmai.com</td>
+                                    <td>902146242</td>
+                                    <td class="estado_usuario_table bloqueado"><i class="bi bi-dash-circle"></i></td>
+                                    <td class="btn_table">
+                                        <a  data-bs-toggle="modal" data-bs-target="#EditarItem"><i class="bi bi-floppy"></i></a>
+                                        <a class="eliminar-item"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>3</td>
+                                    <td>ANGEL SEBASTIAN</td>
+                                    <td>BARRIENTOS GOMEZ</td>
+                                    <td>angelsebastian545@gmai.com</td>
+                                    <td>123</td>
+                                    <td class="estado_usuario_table suspendido"><i class="bi bi-x-circle"></i></td>
+                                    <td class="btn_table">
+                                        <a  data-bs-toggle="modal" data-bs-target="#EditarItem"><i class="bi bi-floppy"></i></a>
+                                        <a class="eliminar-item"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>4</td>
+                                    <td>ANGEL SEBASTIAN</td>
+                                    <td>BARRIENTOS GOMEZ</td>
+                                    <td>angelsebastian545@gmai.com</td>
+                                    <td>902146242</td>
+                                    <td class="estado_usuario_table activo"><i class="bi bi-check-circle"></i></td>
+                                    <td class="btn_table">
+                                        <a  data-bs-toggle="modal" data-bs-target="#EditarItem"><i class="bi bi-floppy"></i></a>
+                                        <a class="eliminar-item"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- fin table -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="modal__container"  th:if="${session.CodigoUsuario != null}"><!-- MODAL AGREGAR Y EDITAR ITEM -->
+        <div class="modal fade " id="AgregarItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content ">
+                <div class="modal-header">
+                  <a class="modal-title fs-1 " id="staticBackdropLabel" style="font-size: 1.3rem;">Agregar Nuevo Item</a>
+                  <button type="button" class="bi bi-x btn btn-dark " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="formulario-dashboard">
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label class="d-block" >Tipo Producto</label>
+                              <select name="" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="">MUEBLE</option>
+                                <option value="">ELECTRODOMESTICO</option>
+                              </select>
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block" for="">Nombre item</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Marca</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Modelo</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">MAC</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Serie</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Usuario</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Material</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Descripcion</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Fecha de registro</label>
+                                <input type="date">
+                            </div>
+        
+                            <div class="formulario_input">
+                                <label class="d-block" >Estado</label>
+                              <select name="" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="">MUEBLE</option>
+                                <option value="">ELECTRODOMESTICO</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">subir documento De Registro</label>
+                                <input type="file" class="form form-control">
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">                  
+                  <button type="button" class="btn-aceptar agregar-item" data-bs-dismiss="modal">aceptar</button>
+                  <button type="button" class="btn-eliminar" data-bs-dismiss="modal">cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade " id="EditarItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content ">
+                <div class="modal-header">
+                  <a class="modal-title fs-1 " id="staticBackdropLabel" style="font-size: 1.3rem;">Agregar Nuevo Item</a>
+                  <button type="button" class="bi bi-x btn btn-dark " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="formulario-dashboard">
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label class="d-block" >Tipo Producto</label>
+                              <select name="" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="">MUEBLE</option>
+                                <option value="">ELECTRODOMESTICO</option>
+                              </select>
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block" for="">Nombre item</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Marca</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Modelo</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">MAC</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Serie</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Usuario</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Material</label>
+                                <input type="text">
+                            </div>
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Descripcion</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contenedor_formulario_dashboard">
+                            <div class="formulario_input">
+                                <label  class="d-block"  for="">Fecha de registro</label>
+                                <input type="date">
+                            </div>
+        
+                            <div class="formulario_input">
+                                <label class="d-block" >Estado</label>
+                              <select name="" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="">MUEBLE</option>
+                                <option value="">ELECTRODOMESTICO</option>
+                              </select>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">                  
+                  <button type="button" class="btn-aceptar agregar-item" data-bs-dismiss="modal">aceptar</button>
+                  <button type="button" class="btn-eliminar" data-bs-dismiss="modal">cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    
+
+    <div class="help_bot" th:if="${session.CodigoUsuario != null}">
+        <a ><img src="../img/bot.png" alt=""></a>
+    </div>
+    <!-- scrips -->
+    <script src="../js/buscador.js"></script>
+    <script src="../js/menuLateral.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.esm.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/consultas.js"></script>
+    <script src="../js/error.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <div th:unless="${session.CodigoUsuario != null}">
+        <div th:replace="~{/fragmentos/administrador/error :: div}"></div>
+    </div>
 </body>
+
 </html>

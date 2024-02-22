@@ -33,3 +33,17 @@ function ajustarMenuSegunAnchoVentana() {
 ajustarMenuSegunAnchoVentana();
 // Verificar el tamaño de la pantalla al cambiar su tamaño
 window.addEventListener("resize", ajustarMenuSegunAnchoVentana);
+   // Function to close the error alert after 3 seconds
+   setTimeout(function () {
+    cerrarErrorAlert();
+}, 4500);
+
+// Function to close the error alert
+function cerrarErrorAlert() {
+    var errorAlerts = document.querySelectorAll('.alerta');
+    for (let error of errorAlerts) {
+        if (error) {
+            error.style.display = 'none';
+        }
+    }
+}

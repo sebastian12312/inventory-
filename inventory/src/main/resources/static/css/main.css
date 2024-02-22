@@ -5,7 +5,10 @@
     padding: 0;
     font-family: 'Montserrat', sans-serif;
 }
-
+body {
+  min-width: 350px;
+ }
+ 
 .btn-aceptar{
   background-color: #5476FF;
   border-color: #5476FF;
@@ -30,7 +33,7 @@
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
+  color: white !important;
 }
 
 .btn-eliminar:hover{
@@ -68,8 +71,12 @@
 /* tamano letra */
 .tamaño-type-one{
  font-size: 1.3rem;
-}body {
- min-width: 350px;
+}
+
+.errorInput {
+  border: 1px solid rgb(248, 98, 98) !important; 
+  background-color: rgb(248, 98, 98) !important;
+  color: white !important;
 }
 
 *::-webkit-scrollbar {

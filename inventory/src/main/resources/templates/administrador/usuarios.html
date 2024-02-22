@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="~{/fragmentos/administrador/head :: head}"></head>
+
+<body>
+    <div class="cuerpo_pagina" th:if="${session.CodigoUsuario != null}">
+        <!-- menu header -->
+        <div th:replace="~{/fragmentos/administrador/barra-top :: div}"></div>
+        <!-- finish menu header TOP-->
+        <div class="contenedor_body">
+            <!-- menu lateral -->
+            <div th:replace="~{/fragmentos/administrador/barra-lateral :: div}"></div>
+            <!-- finish menu lateral -->
+            <div class="contenedor_main">
+                <main class="main">
+                    <div class="titulo_seccion_dashboard">
+                        <a href="#">Usuario</a>
+                        <p>administrador/usuario</p>
+                    </div>
+                    <!-- cards -->
+                    <div class="contenedor_cards_dashboard">
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad de Usuarios</a>
+                                <p th:text="${cantidadlistaUsuario}"></p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                        <div class="cards_dashboard">
+                            <div class="texto_cards_dashboard">
+                                <a>Cantidad Reportes</a>
+                                <p>12312</p>
+                            </div>
+                            <div class="icon_cards_dashboard">
+                                <i class="bi bi-database"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- finis cards -->
+                    <!-- table -->
+                    <div class="contenedor_table">
+                        <div class="contenedor-btn-table">
+                            <div class="btn-agregar">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#AgregarItem"><span>Nuevo
+                                        Item</span><i class="bi bi-plus"></i></a>
+                            </div>
+                            <div class="btn-buscar">
+                                <div>
+                                    <input id="myInput" onkeyup="myFunction()" type="text" placeholder="Buscar...">
+                                    <button class=""><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Estado</th>
+                                    <th>accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="usuario, iterStat  : ${listaUsuario}">
+                                    <td>
+                                        <p th:text="${iterStat .count}"></p>
+                                    </td>
+                                    <td th:text="${usuario.nombre}"></td>
+                                    <td th:text="${usuario.apellido_paterno}"></td>
+                                    <td th:text="${usuario.apellido_materno}"></td>
+                                    <td th:text="${usuario.correo}"></td>
+                                    <td th:text="${usuario.telefono}"></td>
+                                    <td
+                                        th:class="${usuario.id_estado == 1} ? 'estado_usuario_table activo' : (${usuario.id_estado == 2} ? 'estado_usuario_table bloqueado' : 'estado_usuario_table suspendido')">
+                                        <i th:if="${usuario.id_estado == 1}" class="bi bi-check-circle"></i>
+                                        <i th:if="${usuario.id_estado == 2}" class="bi bi-dash-circle"></i>
+                                        <i th:if="${usuario.id_estado == 3}" class="bi bi-x-circle"></i>
+                                    </td>
+                                    <td class="btn_table">
+                                        <a data-bs-toggle="modal" class="EditarUser" th:data-document="${usuario.documento_usuario}"
+                                            data-bs-target="#EditarItem"><i class="bi bi-floppy"></i></a>
+                                        <a
+                                            th:href="@{/administrador/usuarios/eliminar/{codigo_usuario}(codigo_usuario=${usuario.codigo_usuario})}"><i
+                                                class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- fin table -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal__container" th:if="${session.CodigoUsuario != null}"><!-- MODAL AGREGAR Y EDITAR ITEM -->
+        <!-- agregar -->
+        <div class="modal fade " id="AgregarItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <a class="modal-title fs-1 " id="staticBackdropLabel" style="font-size: 1.3rem;">Agregar Nuevo
+                            Item</a>
+                        <button type="button" class="bi bi-x btn btn-dark " data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="/administrador/usuarios/agregar" method="POST">
+                        <div class="modal-body">
+                            <div class="formulario-dashboard">
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block">Tipo documento</label>
+                                        <select id="" name="id_documento">
+                                            <option th:each="tipoDocumento : ${listaDocumentos}"
+                                                th:value="${tipoDocumento.id_documento}">
+                                                <p th:text="${tipoDocumento.nombre_documento}"></p>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Numero Documento <span
+                                                style="font-size: 12px;color:red" id="documento_label_register">!error
+                                                de documento!</span></label>
+                                        <input type="text" name="documento_usuario" id="documento_usuario_register">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Nombre</label>
+                                        <input type="text" name="nombre">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Apellido Paterno</label>
+                                        <input type="text" name="apellido_paterno">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Apellido Materno</label>
+                                        <input type="text" name="apellido_materno">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Tefefono</label>
+                                        <input type="text" name="telefono">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Correo</label>
+                                        <input type="text" name="correo">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Password</label>
+                                        <input type="text" name="contrasena">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block">Rango / Rol</label>
+                                        <select name="id_rol" id="">
+                                            <option th:each="listaRoles : ${listaRoles}" th:value="${listaRoles.id_rol}"
+                                                th:text="${listaRoles.nombre_rol}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="formulario_input">
+                                        <label class="d-block">Estado</label>
+                                        <select name="id_estado" id="">
+                                            <option th:each="listaEstados : ${listaEstados}"
+                                                th:value="${listaEstados.id_estado}"
+                                                th:text="${listaEstados.nombre_estado}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn-aceptar" data-bs-dismiss="modal" value="aceptar">
+                            <a class="btn-eliminar" data-bs-dismiss="modal">cerrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="EditarItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-1" id="staticBackdropLabel" style="font-size: 1.3rem;">Editar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/administrador/usuarios/guardar" method="post" id="formulario_edit_user">
+                        <div class="modal-body">
+                            <div class="formulario-dashboard">
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block">Tipo Documento</label>
+                                        <select name="id_documento" id="tipo_documento_Edit">
+                                            <option th:each="tipoDocumento : ${listaDocumentos}"
+                                            th:value="${tipoDocumento.id_documento}">
+                                            <p th:text="${tipoDocumento.nombre_documento}"></p>
+                                            </option>                                       
+                                        </select>
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Numero Documento</label>
+                                        <input type="text" name="documento_usuario" id="documento_usuario_edit">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Nombre</label>
+                                        <input type="text" name="nombre"id="nombre_usuario_edit" >
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Apellido Paterno</label>
+                                        <input type="text" name="apellido_paterno" id="apellido_paterno_edit">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Apellido Materno</label>
+                                        <input type="text" name="apellido_materno" id="apellido_materno_edit">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Telefono</label>
+                                        <input type="text" name="telefono" id="telefono_edit">
+                                    </div>
+                                    <div class="formulario_input">
+                                        <label class="d-block" for="">Correo</label>
+                                        <input type="text" name="correo" id="correo_edit">
+                                    </div>
+                                </div>
+                                <div class="contenedor_formulario_dashboard">
+                                    <div class="formulario_input">
+                                        <label class="d-block">Rango / Rol</label>
+                                        <select name="id_rol" id="id_rol_edit">
+                                            <option th:each="listaRoles : ${listaRoles}" th:value="${listaRoles.id_rol}"
+                                                th:text="${listaRoles.nombre_rol}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="formulario_input">
+                                        <label class="d-block">Estado</label>
+                                        <select name="id_estado" id="id_estado_edit">
+                                            <option th:each="listaEstados : ${listaEstados}"
+                                                th:value="${listaEstados.id_estado}"
+                                                th:text="${listaEstados.nombre_estado}"></option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="codigo_usuario_edit" name="codigo_usuario">
+                            <input type="hidden" id="contrasena_edit" name="contrasena">
+                            <input type="submit" class="btn-aceptar" data-bs-dismiss="modal" value="Guardar Datos">
+                            <a class="btn-eliminar" data-bs-dismiss="modal">cerrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="help_bot" th:if="${session.CodigoUsuario != null}">
+        <a><img src="/img/bot.png" alt=""></a>
+    </div>
+    <!-- scrips -->
+    <script src="../js/buscador.js"></script>
+    <script src="../js/menuLateral.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.esm.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/consultas.js"></script>
+    <script src="../js/error.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- mensaje -->
+    <div th:if="${mensajeOk != null}" class="alerta">
+        <div class="contenedor_alerta_ok alert-success ">
+            <a><i class="bi bi-check2-all"></i></a>
+            <p th:text="${mensajeOk}"></p>
+        </div>
+    </div>
+    <div th:if="${mensajeError != null}" class="alerta">
+        <div class="contenedor_alerta_error alert-danger ">
+            <a><i class="bi bi-x-octagon"></i></a>
+            <p th:text="${mensajeError}"></p>
+        </div>
+    </div>
+    <div th:unless="${session.CodigoUsuario != null}">
+        <div th:replace="~{/fragmentos/administrador/error :: div}"></div>
+    </div>
+</body>
+
+</html>

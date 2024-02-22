@@ -12,7 +12,6 @@ import lombok.Data;
 public class Usuario {
     
     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String codigo_usuario;
     
     private int id_documento;

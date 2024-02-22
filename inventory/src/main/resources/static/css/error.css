@@ -1,0 +1,46 @@
+.circle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+   background-color: black;
+}
+
+.circle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+
+}
+.error-404 {
+    display: block;
+    text-align: center;
+}
+.contenedor-error{
+    display: block;
+    text-align: center;
+
+}
+.error-404 a{
+    color: #ffac1c;
+    font-size: 300px;
+    z-index: 1;
+    font-weight: bold;
+}
+.error-404 p{
+    font-size: 50px;
+    color: #ffac1c;
+}
+@media (max-width:1000px) {
+    .error-404 a{
+    color: #ffac1c;
+    font-size: 150px;
+    z-index: 1;
+    font-weight: bold;
+}
+.error-404 p{
+    font-size: 25px;
+    color: #ffac1c;
+}
+}

@@ -10,4 +10,7 @@ import com.project.inventory.inventory.clases.Usuario;
 public interface UsuarioRepositorio  extends JpaRepository<Usuario,String>{
     @Query("SELECT u FROM Usuario u WHERE u.documento_usuario = :documento_usuario and u.contrasena = :contrasena")
     Usuario findValidar(@Param("documento_usuario") String documento_usuario, @Param("contrasena") String contrasena);
+
+    @Query("select u from Usuario u where u.documento_usuario = :documento_usuario")
+    Usuario findBuscarNumeroDocumento(@Param("documento_usuario") String documento_usuario);
 }
