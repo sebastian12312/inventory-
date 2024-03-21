@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="~{/fragmentos/administrador/head :: head}"></head>
+
+
+<body>
+<div class="cuerpo_pagina"  th:if="${session.codigoEmpleado != null}">
+    <!-- menu header -->
+    <div th:replace="~{/fragmentos/administrador/header :: div}">
+
+    </div>
+    <!-- finish menu header -->
+    <div class="contenedor_body">
+        <!-- menu lateral -->
+        <div th:replace="~{/fragmentos/administrador/menu-lateral :: div}"></div>
+        <!-- finish menu lateral -->
+        <div class="contenedor_main">
+            <main class="main">
+                <div class="titulo_seccion_dashboard">
+                    <a href="#">Clientes</a>
+                    <p>administrador/Clientes</p>
+                </div>
+                <!-- cards -->
+                <div class="contenedor_cards_dashboard">
+                    <div class="cards_dashboard">
+                        <div class="texto_cards_dashboard">
+                            <a>Cantidad Reportes</a>
+                            <p>12312</p>
+                        </div>
+                        <div class="icon_cards_dashboard">
+                            <i class="bi bi-database"></i>
+                        </div>
+                    </div>
+                    <div class="cards_dashboard">
+                        <div class="texto_cards_dashboard">
+                            <a>Cantidad Reportes</a>
+                            <p>12312</p>
+                        </div>
+                        <div class="icon_cards_dashboard">
+                            <i class="bi bi-database"></i>
+                        </div>
+                    </div>
+                    <div class="cards_dashboard">
+                        <div class="texto_cards_dashboard">
+                            <a>Cantidad Reportes</a>
+                            <p>12312</p>
+                        </div>
+                        <div class="icon_cards_dashboard">
+                            <i class="bi bi-database"></i>
+                        </div>
+                    </div>
+                    <div class="cards_dashboard">
+                        <div class="texto_cards_dashboard">
+                            <a>Cantidad Reportes</a>
+                            <p>12312</p>
+                        </div>
+                        <div class="icon_cards_dashboard">
+                            <i class="bi bi-database"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- finis cards -->
+                <!-- table -->
+                <div class="contenedor_table">
+                    <div class="contenedor-btn-table">
+                        <div class="btn-agregar">
+                            <a  type="button" data-bs-toggle="modal" data-bs-target="#AgregarItem"><span>Nuevo Item</span><i class="bi bi-plus"></i></a>
+                        </div>
+                        <div class="btn-buscar">
+                            <div>
+                                <input id="myInput" onkeyup="myFunction()" type="text" placeholder="Buscar...">
+                                <button class=""><i class="bi bi-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Id Cliente</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>accion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="clientes, iterStat : ${listaCliente}" >
+                            <td th:text="${clientes.id_cliente}"></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                            <td ></td>
+                            <td>
+                                <i class="bi bi-check-circle"></i>
+                                <i  class="bi bi-dash-circle"></i>
+                                <i  class="bi bi-x-circle"></i>
+                            </td>
+                            <td class="btn_table">
+                                <a class="valorEdit" >
+                                    <i class="bi bi-floppy"></i>
+                                </a>
+                                 <a class="eliminar-item" ><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- fin table -->
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL AGREGAR Y EDITAR ITEM -->
+    <div class="modal fade " id="AgregarItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <a class="modal-title fs-1 " id="staticBackdropLabel" style="font-size: 1.3rem;">Agregar Nuevo Item</a>
+                    <button type="button" class="bi bi-x btn btn-dark " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+           <form action="../administrador/empleados/agregar" method="POST">
+            <div class="modal-body">
+                <div class="formulario-dashboard">
+                    <div class="contenedor_formulario_dashboard">
+                        <div class="formulario_input">
+                            <label class="d-block" >Tipo Rango</label>
+                            <select name="rol" id="" required>
+                                <option selected >Escoja una opcion</option>
+                                <option value="1">ADMIN</option>
+                                <option value="2">COCINERO</option>
+                                <option value="3">MOZO</option>
+                            </select>
+                        </div>
+                        <div class="formulario_input">
+                            <label class="d-block" >Tipo documento</label>
+                            <select name="tipo_id" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="1">DNI</option>
+                                <option value="2">PASAPORTE</option>
+                                <option value="3">CARNET EXTRANJERIA</option>
+                            </select>
+                        </div>
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Numero doc</label>
+                            <input type="text" name="id_empleado" required>
+                        </div>
+                    </div>
+                    <div class="contenedor_formulario_dashboard">
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Nombre</label>
+                            <input type="text" name="nombre_empleado">
+                        </div>
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Apellido</label>
+                            <input type="text" name="apellido_empleado">
+                        </div>
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Correo</label>
+                            <input type="text" name="correo_empleado">
+                        </div>
+                    </div>
+                    <div class="contenedor_formulario_dashboard">
+            
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Telefono</label>
+                            <input type="text" name="telefono_empleado">
+                        </div>
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Direccion</label>
+                            <input type="text" name="direccion_empleado">
+                        </div>
+                        <div class="formulario_input">
+                            <label  class="d-block"  for="">Password</label>
+                            <input type="text" name="password_empleado">
+                        </div>
+                    </div>
+                    <div class="contenedor_formulario_dashboard">
+          
+                        <div class="formulario_input">
+                            <label class="d-block" >Estado</label>
+                            <select name="id_estado" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="1">ACTIVO</option>
+                                <option value="2">SUSPENDIDO</option>
+                            </select>
+                        </div>
+                        <div class="formulario_input">
+                            <label class="d-block" >ESTABLECIMIENTO</label>
+                            <select name="id_establecimiento" id="">
+                                <option selected>Escoja una opcion</option>
+                                <option value="1">LA MOLINA</option>
+                                <option value="2">SANTA ANITA</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn-aceptar agregar-item" data-bs-dismiss="modal" value="aceptar">
+                <a  class="btn-eliminar" data-bs-dismiss="modal">cerrar</a>
+            </div>
+           </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade " id="EditarEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <a class="modal-title fs-1 " id="staticBackdropLabel" style="font-size: 1.3rem;">Agregar Nuevo Item</a>
+                    <button type="button" class="bi bi-x btn btn-dark " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="../administrador/empleado/actualizar" method="POST">
+                    <div class="modal-body">
+                        <div class="formulario-dashboard">
+                            <div class="contenedor_formulario_dashboard">
+                                <div class="formulario_input">
+                                    <label class="d-block">Seleccione un Rol</label>
+                                    <select name="rol" id="rol" required>
+                                        <option selected >Escoja una opcion</option>
+                                        <option value="1">ADMIN</option>
+                                        <option value="2">COCINERO</option>
+                                        <option value="3">MOZO</option>
+                                    </select>
+                                </div>
+                                <div class="formulario_input">
+                                    <label class="d-block" >Tipo documento</label>
+                                    <select name="tipo_id" id="tipo_id">
+                                        <option selected>Escoja una opcion</option>
+                                        <option value="1">DNI</option>
+                                        <option value="2">PASAPORTE</option>
+                                        <option value="3">CARNET EXTRANJERIA</option>
+                                    </select>
+                                </div>
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Numero doc</label>
+                                    <input type="text" name="id_empleado" id="id_empleado" readonly>
+                                </div>
+                            </div>
+                            <div class="contenedor_formulario_dashboard">
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Nombre</label>
+                                    <input type="text" name="nombre_empleado" id="nombre_empleado">
+                                </div>
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Apellido</label>
+                                    <input type="text" name="apellido_empleado"  id="apellido_empleado">
+                                </div>
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Correo</label>
+                                    <input type="text" name="correo_empleado" id="correo_empleado">
+                                </div>
+                            </div>
+                            <div class="contenedor_formulario_dashboard">
+                    
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Telefono</label>
+                                    <input type="text" name="telefono_empleado" id="telefono_empleado">
+                                </div>
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Direccion</label>
+                                    <input type="text" name="direccion_empleado" id="direccion_empleado">
+                                </div>
+                                <div class="formulario_input">
+                                    <label  class="d-block"  for="">Password</label>
+                                    <input type="text" name="password_empleado" id="password_empleado">
+                                </div>
+                            </div>
+                            <div class="contenedor_formulario_dashboard">
+                  
+                                <div class="formulario_input">
+                                    <label class="d-block" >Estado</label>
+                                    <select name="id_estado" id="id_estado">
+                                        <option selected>Escoja una opcion</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Suspendido</option>
+                                        <option value="3">Eliminado</option>
+                                    </select>
+                                </div>
+                                <div class="formulario_input">
+                                    <label class="d-block" >ESTABLECIMIENTO</label>
+                                    <select name="id_establecimiento" id="id_establecimiento">
+                                        <option selected>Escoja una opcion</option>
+                                        <option value="1">LA MOLINA</option>
+                                        <option value="2">SANTA ANITA</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn-aceptar agregar-item" data-bs-dismiss="modal" value="aceptar">
+                        <a  class="btn-eliminar" data-bs-dismiss="modal">cerrar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+       $(document).ready(function () {
+        // Evento que se dispara cuando el modal se muestra
+        $('#EditarItem').on('shown.bs.modal', function () {
+            // ID del empleado que deseas cargar
+            var idEmpleado = 1; // ¡Asegúrate de tener el ID correcto!
+
+            // Realiza una petición al controlador para obtener los datos del empleado
+            $.get('/administrador/empleados/buscar/' + idEmpleado, function (data) {
+                // Reemplaza el contenido del modal con los datos del empleado
+                $('#EditarItem .modal-content').html(data);
+            });
+        });
+    });
+    function bloquearInput() {
+    document.getElementById("miInput").readOnly = true;
+}
+    </script>
+    <div class="help_bot">
+        <a ><img src="../img/bot.png" alt=""></a>
+    </div>
+</div>
+
+
+
+<!-- scrips -->
+
+<script src="../js/buscador.js"></script>
+<script src="../js/menuLateral.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap.esm.js"></script>
+<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../js/consultas.js"></script>
+<script src="../js/error.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/t1glT5/6l4hW6PExM2qRiMGaB2yygDP1W5GI=" crossorigin="anonymous"></script>
+
+<div  th:if="${mensajeOk != null}" class="alerta">
+    <div class="contenedor_alerta_ok alert-success ">
+        <a><i class="bi bi-check2-all"></i></a>
+        <p th:text="${mensajeOk}"></p>
+    </div>
+</div>
+
+<div th:if="${mensajeError != null}" class="alerta">
+    <div class="contenedor_alerta_error alert-danger ">
+        <a><i class="bi bi-x-octagon"></i></a>
+        <p th:text="${mensajeError}"></p>
+    </div>
+</div>
+
+<script>
+    var mensaje = document.querySelectorAll(".alerta")
+    for(let msg of mensaje){
+        setTimeout(function(){
+            msg.classList.add("cerrarAlerta");
+    },3000  )   
+     
+        }    
+</script>
+<div th:unless="${session.codigoEmpleado != null}">
+    <div th:replace="~{/fragmentos/administrador/error404 :: div}"></div>
+</div>
+</body>
+
+</html>

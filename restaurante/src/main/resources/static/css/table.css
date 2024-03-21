@@ -1,0 +1,113 @@
+.contenedor_table{
+    margin-top: 20px;
+    border: 1px solid rgb(230, 230, 230);
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    overflow-y: auto;
+}
+.table{
+    margin-top: 20px;
+    text-align: center;
+}
+.table th{
+    background-color: #589464;
+    color: white;
+}
+
+/* estado table usuario */
+.estado_usuario_table i{
+    font-size: 25px;
+}
+.activo{
+    color: #27C416;
+}
+.bloqueado{
+ color: #FF8126;
+}
+.suspendido{
+    color: rgb(243, 56, 56);
+}
+/* buttom accion usuario */
+.btn_table{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  
+}
+.btn_table a{
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn_table i{
+    color: white;
+}
+.btn_table a:nth-child(1){
+    background-color: rgb(54, 145, 235);
+    color: white;
+}
+.btn_table a:nth-child(1):hover{
+    background-color: #143376;
+    transition: 0.6s;
+}
+.btn_table a:nth-child(2){
+    background-color: rgb(235, 54, 54);
+    color: white;
+
+}
+.btn_table a:nth-child(2):hover{
+    background-color: #921111;
+    transition: 0.6s;
+}
+
+.contenedor-btn-table {   
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+ .contenedor-btn-table div{
+    margin-top: auto;
+    margin-bottom: auto;    
+}
+.btn-agregar{
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+ }
+ .btn-agregar a{
+    background-color: #589464;
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    border-radius:3px ;
+    box-shadow: 0px 0px 2px 2px rgba(94, 94, 94, 0.15);
+ }
+
+  .btn-buscar div{
+    border: 1px solid #589464;
+    border-radius: 3px;    
+  }
+  .btn-buscar input{
+    outline: none;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0px 10px;
+    color: rgb(13, 13, 13);
+ }
+ .btn-buscar button{
+    border: none;
+    background-color: #589464;
+    padding: 5px 12px;
+    color: white;
+ }
+@media (max-width:562px){
+    .contenedor-btn-table {   
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+     }
+   
+ }

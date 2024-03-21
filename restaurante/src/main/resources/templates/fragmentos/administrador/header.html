@@ -1,0 +1,39 @@
+<div class="menu_header">
+    <div class="header_right">
+        <div class="barra_menu">
+            <a class="tamaño-type-one btn_check_menu_lateral" id="btn_menu_lateral"><i class="bi bi-columns-gap"></i>
+                <input type="checkbox" class="checkbox_menu_lateral" id="checkbox_menu_lateral">
+            </a>
+        </div>
+        <div class="titulo_menu">
+            <a>ProyectoWeb</a>
+        </div>
+    </div>
+    <div class="header_left">
+        <div class="contenedor_campana_buttom">
+            <a class="campana_buttom"><i class="bi bi-bell"></i></a>
+        </div>
+        <div class="dropdown">
+            <a class="mensaje_buttom"  role="button" data-bs-toggle="dropdown" ><i class="bi bi-envelope-open" ></i></a>
+            <ul id="dropdown_menu_mensaje" class="dropdown-menu dropdown_menu_mensaje">
+                <li><a class="dropdown-item"  href="#"> <span>Mi Perfil</span> <i
+                        class="bi bi-person-badge"></i></a></li>
+                <li><a class="dropdown-item" href="#"> <span>Ajustes</span><i class="bi bi-gear"></i></a></li>
+                <li><a class="dropdown-item" href="#"><span>cerrar sesion</span><i
+                        class="bi bi-box-arrow-left"></i> </a></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <a class="dropdown_usuario" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${session.nombreEmpleado}">
+                 <i class="bi bi-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown_menu_usuario">
+                <li><a class="dropdown-item" href="#"> <span>Mi Perfil</span> <i
+                        class="bi bi-person-badge"></i></a></li>
+                <li><a class="dropdown-item" href="#"> <span>Ajustes</span><i class="bi bi-gear"></i></a></li>
+                <li><a class="dropdown-item" href="/logout"><span>cerrar sesion</span><i
+                        class="bi bi-box-arrow-left"></i> </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
